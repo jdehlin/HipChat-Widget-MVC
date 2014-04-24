@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipChat.Widget.Mvc", "HipChat.Widget.Mvc\HipChat.Widget.Mvc.csproj", "{9BAC32F1-179D-41C8-A6DD-76376330F5FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipChat.Widget.Mvc.UnitTests", "HipChat.Widget.Mvc.UnitTests\HipChat.Widget.Mvc.UnitTests.csproj", "{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BAC32F1-179D-41C8-A6DD-76376330F5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BAC32F1-179D-41C8-A6DD-76376330F5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BAC32F1-179D-41C8-A6DD-76376330F5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BAC32F1-179D-41C8-A6DD-76376330F5FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
