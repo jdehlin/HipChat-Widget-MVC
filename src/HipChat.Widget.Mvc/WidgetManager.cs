@@ -1,12 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
-using HipChat.Widget.Mvc.Entities;
 
 namespace HipChat.Widget.Mvc
 {
-    public class WidgetManager
+    public static class WidgetManager
     {
         public static Widget SetupRoom(string username)
         {
@@ -37,17 +38,25 @@ namespace HipChat.Widget.Mvc
 
             // notify administrators
             if (room.Partcipants.UserList == null || room.Partcipants.UserList.All(p => users.All(u => u.Id != p.Id)))
-            {
                 client.RoomsMessage(notifyRoom.Id, username, string.Format("{0} wants to chat, please join room '{1}'", username, room.Name), true);
-            }
-
-
-
-            //if !room_info['participants'].detect { |p| users.detect { |u| u['user_id'] == p['user_id'] } }
-            //  hipchat_notify! "#{name} wants to chat, please join room '#{room_name}'", notify: true, color: :red, mentions: users.map { |u| u['mention_name'] }, format: 'text'
-            //end
 
             return new Widget(room);
-        } 
+        }
+
+        public static HtmlString RenderWidget(string awayEmail)
+        {
+            const string resourceName = "HipChat.Widget.Mvc.widget.html";
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var result = default(string);
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            using (var reader = new StreamReader(stream))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            result = result.Replace("{awayEmail}", awayEmail);
+            return new HtmlString(result);
+        }
     }
 }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipChat.Widget.Mvc", "HipCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipChat.Widget.Mvc.UnitTests", "HipChat.Widget.Mvc.UnitTests\HipChat.Widget.Mvc.UnitTests.csproj", "{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipChat.Widget.Mvc.Sample", "HipChat.Widget.Mvc.Sample\HipChat.Widget.Mvc.Sample.csproj", "{7ED9CCCE-770E-465A-90BA-8B79A349391E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E77D50C6-5EBF-4AD6-9F67-69E501210DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ED9CCCE-770E-465A-90BA-8B79A349391E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED9CCCE-770E-465A-90BA-8B79A349391E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED9CCCE-770E-465A-90BA-8B79A349391E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED9CCCE-770E-465A-90BA-8B79A349391E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

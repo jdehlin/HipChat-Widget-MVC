@@ -1,0 +1,143 @@
+﻿
+<script type="text/javascript">
+
+    (function ($) {
+        var self;
+
+        window.AlgoliaSupportChat = function () {
+            this.init();
+            self = this;
+        }
+
+        AlgoliaSupportChat.prototype = {
+            init: function () {
+                $(document).ready(function () {
+                    if (self.inIframe()) {
+                        $('#chat-box').remove();
+                        return;
+                    }
+                    var url = localStorage['chatUrl'];
+                    var chat_at = localStorage['chatOpenedAt'] || 0;
+                    if (url && new Date().getTime() - chat_at < 10 * 60 * 1000) {
+                        self.show(url);
+                    }
+                });
+            },
+
+            inIframe: function () {
+                try {
+                    return window.self !== window.top;
+                } catch (e) {
+                    return true;
+                }
+            },
+
+            maximize: function () {
+                location.href = '/support' + '/' + 'chat-frame';
+            },
+
+            show: function (url) {
+                $('#chat-box .closed').hide();
+                $('#chat-box .opened').show();
+                var tz = new Date().toString().match(/\(([A-Za-z\s].*)\)/)[1] || 'PST';
+                if (url) {
+                    this._display({ url: url, timezone: tz, welcome: ' ' });
+                }
+                $.post('/HipChatWidget' + '/' + 'Chat', function (data) {
+                    console.log(data);
+                    if (data.Room.GuestAccessUrl) {
+                        $('#chat-box .maximize').show();
+                        if (!url || data.Room.GuestAccessUrl != url) {
+                            self._display({ url: data.Room.GuestAccessUrl, timezone: tz, welcome: 'Questions? Come chat with us! We\'re here, send us a message!' });
+                            localStorage['chatURL'] = data.Room.GuestAccessUrl;
+                            localStorage['chatOpenedAt'] = new Date().getTime();
+                        }
+                        data.messages = []; // TODO temporary
+                        self._history(data.messages);
+                    } else {
+                        $('#chat-box .opened .content').hide();
+                        $('#chat-box .opened .offline').show();
+                    }
+                });
+            },
+
+            hide: function () {
+                $('#chat-box .closed').show();
+                $('#chat-box .opened').hide();
+                localStorage['chatURL'] = null;
+            },
+
+            _history: function (messages) {
+                if (messages.length == 0) return;
+                $('#chat-box .history').empty();
+                for (var i = 0; i < messages.length; ++i) {
+                    var from = messages[i].from.name;
+                    if (from.indexOf('Guest') > -1) {
+                        from = 'You';
+                    }
+                    $('#chat-box .history').append('<li><b>' + from + '</b>: ' + messages[i].message + '</li>');
+                }
+            },
+
+            _display: function (options) {
+                if (this.loaded) {
+                    return;
+                }
+                var params = {
+                    anonymous: 1,
+                    timezone: options.timezone,
+                    minimal: 1
+                };
+                if (options.welcome) {
+                    params.welcome_msg = options.welcome;
+                }
+                var url = options.url + (options.url.indexOf('?') > 0 ? '&' : '?') + $.param(params);
+                if (url.indexOf('https://') !== 0) {
+                    url = 'https://' + url;
+                }
+                var w = options.width || '100%';
+                var h = options.height || 400;
+                var nf = (options.noframes || '');
+                console.log(url);
+                $('#chat-box .content').html('<iframe src="' + url + '" frameborder="' + 0 + '" width="' + w + '" height="' + h + '">' + nf + '</iframe>');
+                this.loaded = true;
+            }
+        }
+    })(jQuery);
+
+</script>
+
+
+
+<div class="ubuntu hidden-xs" id="chat-box">
+    <div class="closed" style="display: none;">
+        <div class="pull-right">
+            <a href="#" onclick="chat.show(); return false;"><i class="glyphicon glyphicon-chevron-up"></i></a>
+        </div>
+        <div class="m-l-small">
+            <a href="#" onclick="chat.show(); return false;">Chat with us</a>
+        </div>
+    </div>
+    <div class="opened" style="">
+        <div class="header">
+            <div class="pull-right">
+                <a class="maximize" href="#" onclick="chat.maximize(); return false;" style="display: none"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                <a href="#" onclick="chat.hide(); return false;"><i class="glyphicon glyphicon-remove-sign"></i></a>
+            </div>
+            Live chat
+        </div>
+        <ul class="history list-unstyled"></ul>
+        <div class="offline text-center" style="">
+            We're currently offline, you can reach us at
+            {awayEmail}
+        </div>
+        <div class="content" style="display: none;">
+            <div class="text-center p-t p-b bg-color-white">
+                Loading...
+            </div>
+        </div>
+    </div>
+    <script>
+        var chat = new AlgoliaSupportChat();
+    </script>
+</div>

@@ -27,6 +27,13 @@ namespace HipChat.Widget.Mvc.UnitTests
             Assert.NotNull(result);
         }
 
+        [Fact]
+        public void CanRenderWidget()
+        {
+            var result = WidgetManager.RenderWidget("test@test.com");
+            Assert.NotNull(result);
+        }
+
 
         public void Dispose()
         {

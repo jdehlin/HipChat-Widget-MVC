@@ -23,7 +23,7 @@ namespace HipChat.Widget.Mvc
                 new
                 {
                     controller = "HipChatWidget",
-                    action = "Index",
+                    action = "Chat",
                     resource = UrlParameter.Optional
                 },
                 null,
