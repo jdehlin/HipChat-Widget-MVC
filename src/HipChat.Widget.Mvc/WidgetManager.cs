@@ -43,7 +43,7 @@ namespace HipChat.Widget.Mvc
             return new Widget(room);
         }
 
-        public static HtmlString RenderWidget(string awayEmail)
+        public static HtmlString RenderWidget()
         {
             const string resourceName = "HipChat.Widget.Mvc.widget.html";
             var assembly = Assembly.GetExecutingAssembly();
@@ -55,7 +55,9 @@ namespace HipChat.Widget.Mvc
                 result = reader.ReadToEnd();
             }
 
-            result = result.Replace("{awayEmail}", awayEmail);
+            result = result.Replace("{intro-message}", Settings.IntroMessage);
+            result = result.Replace("{welcome-message}", Settings.WelcomeMessage);
+            result = result.Replace("{offline-message}", Settings.OfflineMessage);
             return new HtmlString(result);
         }
     }

@@ -30,7 +30,7 @@ namespace HipChat.Widget.Mvc.UnitTests
         [Fact]
         public void CanRenderWidget()
         {
-            var result = WidgetManager.RenderWidget("test@test.com");
+            var result = WidgetManager.RenderWidget();
             Assert.NotNull(result);
         }
 

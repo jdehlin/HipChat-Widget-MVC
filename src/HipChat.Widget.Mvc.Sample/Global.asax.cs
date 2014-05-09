@@ -17,6 +17,7 @@ namespace HipChat.Widget.Mvc.Sample
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            // initialize the HipChat widget
             Bootstrapper.Initialize();
         }
     }
