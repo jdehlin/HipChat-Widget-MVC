@@ -20,7 +20,7 @@
                     }
                     var url = localStorage['chatUrl'];
                     var chatOpenedAt = localStorage['chatOpenedAt'] || 0;
-                    if (url && new Date().getTime() - chatOpenedAt < 10 * 60 * 1000) {
+                    if (url !== 'null' && new Date().getTime() - chatOpenedAt < 10 * 60 * 1000) {
                         self.show();
                     }
                 });
@@ -47,7 +47,6 @@
                     } else {
                         $('#chat-box .opened .content').hide();
                         $('#chat-box .opened .offline').show();
-                        localStorage['chatUrl'] = null;
                     }
                 });
             },
@@ -57,6 +56,7 @@
                 $('#chat-box .opened').hide();
                 $('#chat-box .opened .content').show();
                 $('#chat-box .opened .offline').hide();
+                localStorage['chatUrl'] = null;
             },
 
             _display: function (options) {
