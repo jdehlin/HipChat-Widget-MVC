@@ -24,7 +24,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\HipChat.Widget.Mvc.dll" target="lib\net40" />
-    <file src="bin\Release\HipChat.Widget.Mvc.pdb" target="lib\net40" />
+    <file src="..\src\HipChat.Widget.Mvc\bin\Release\HipChat.Widget.Mvc.dll" target="lib\net40" />
+    <file src="..\src\HipChat.Widget.Mvc\bin\Release\HipChat.Widget.Mvc.pdb" target="lib\net40" />
   </files>
 </package>
