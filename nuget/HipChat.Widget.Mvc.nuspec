@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>HipChat.Widget.Mvc</id>
+    <version>0.1.0</version>
+    <title>HipChat Widget</title>
+    <authors>Jack Dehlin</authors>
+    <owners>Jack Dehlin</owners>
+    <licenseUrl>https://github.com/jdehlin/HipChat-Widget-MVC/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/jdehlin/HipChat-Widget-MVC</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Easily add a chat widget to your ASP.NET MVC application to allow your users to contact you though HipChat.
+    </description>
+    <summary>
+	  
+    </summary>
+    <releaseNotes>
+      
+    </releaseNotes>
+    <copyright>Copyright Jack Dehlin 2013</copyright>
+    <tags>HipChat MVC Widget</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\HipChat.Widget.Mvc.dll" target="lib\net40" />
+    <file src="bin\Release\HipChat.Widget.Mvc.pdb" target="lib\net40" />
+  </files>
+</package>
