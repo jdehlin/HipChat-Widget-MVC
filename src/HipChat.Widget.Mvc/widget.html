@@ -38,7 +38,7 @@
                 $('#chat-box .closed').hide();
                 $('#chat-box .opened').show();
                 var tz = new Date().toString().match(/\(([A-Za-z\s].*)\)/)[1] || 'PST';
-                $.post('/HipChatWidget' + '/' + 'Chat', function(data) {
+                $.post('/HipChatWidget/Chat' + '?username={username}', function(data) {
                     if (data.Room && data.Room.GuestAccessUrl) {
                         $('#chat-box .maximize').show();
                         self._display({ url: data.Room.GuestAccessUrl, timezone: tz, welcome: self.welcomeMessage });

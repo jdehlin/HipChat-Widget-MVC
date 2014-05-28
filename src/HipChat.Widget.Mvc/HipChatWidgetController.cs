@@ -5,11 +5,11 @@ namespace HipChat.Widget.Mvc
 {
     public class HipChatWidgetController : Controller
     {
-        public ActionResult Chat()
+        public ActionResult Chat(string username = "Guest")
         {
             try
             {
-                var widget = WidgetManager.SetupRoom("Guest");
+                var widget = WidgetManager.SetupRoom(username);
                 return new JsonResult
                        {
                            Data = widget,

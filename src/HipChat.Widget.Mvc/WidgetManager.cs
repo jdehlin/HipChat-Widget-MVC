@@ -58,7 +58,7 @@ namespace HipChat.Widget.Mvc
             return new Widget(room);
         }
 
-        public static HtmlString RenderWidget()
+        public static HtmlString RenderWidget(string username = "Guest")
         {
             const string resourceName = "HipChat.Widget.Mvc.widget.html";
             var assembly = Assembly.GetExecutingAssembly();
@@ -73,6 +73,7 @@ namespace HipChat.Widget.Mvc
             result = result.Replace("{intro-message}", Settings.IntroMessage);
             result = result.Replace("{welcome-message}", Settings.WelcomeMessage);
             result = result.Replace("{offline-message}", Settings.OfflineMessage);
+            result = result.Replace("{username}", username);
             return new HtmlString(result);
         }
     }
