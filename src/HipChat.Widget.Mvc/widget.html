@@ -82,7 +82,9 @@
                 this.loaded = true;
             }
         }
-    };
+
+        window.hipchatWidgetInstance = new window.HipChatWidget('{welcome-message}');
+    }
 
 </script>
 
@@ -167,7 +169,6 @@
     <script>
 
         initializeHipChatWidget();
-        window.hipchatWidgetInstance = new HipChatWidget('{welcome-message}');
         
     </script>
 </div>
