@@ -40,20 +40,26 @@ namespace HipChat.Widget.Mvc
             if (string.IsNullOrWhiteSpace(roomName) || room == null)
             {
                 if (username == "Guest")
+                {
                     roomName = string.Format("{0} {1} {2}", Settings.RoomNamePrefix, username, new Random().Next(10000));
-                else 
+                }
+                else
+                {
                     roomName = string.Format("{0} {1}", Settings.RoomNamePrefix, username);
+                }
             }
             HttpContext.Current.Response.Cookies.Add(new HttpCookie("HipChatSupportRoom", roomName));
 
             // create room if necessary
-            if (room == null)
+            if (room == null && rooms.FirstOrDefault(r => r.Name == roomName) == null)
                 room = client.RoomsCreate(roomName, Settings.OwnerUserId, guestAccess: true);
+            else
+                room = rooms.FirstOrDefault(r => r.Name == roomName);
             room = client.RoomsShow(room.Id);
             
             // notify administrators
             if (room.Partcipants.UserList == null || room.Partcipants.UserList.All(p => users.All(u => u.Id != p.Id)))
-                client.RoomsMessage(notifyRoom.Id, username, string.Format("{0} wants to chat, please join room '{1}'", username, room.Name), true);
+                client.RoomsMessage(notifyRoom.Id, (username.Length > 14 ? username.Substring(0, 14) : username), string.Format("{0} wants to chat, please join room '{1}'", username, room.Name), true);
             
             return new Widget(room);
         }

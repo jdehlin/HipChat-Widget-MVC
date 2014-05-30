@@ -95,7 +95,7 @@ namespace HipChat.Widget.Mvc
             postData.Append("room_id=" + roomId + "&");
             postData.Append("from=" + HttpUtility.UrlEncode(from) + "&");
             postData.Append("message=" + HttpUtility.UrlEncode(message) + "&");
-            postData.Append("notify=" + (notify ? 1 : 0) + "&");
+            postData.Append("notify=" + (notify ? 1 : 0));
             var bytedata = Encoding.UTF8.GetBytes(postData.ToString());
 
             var request = (HttpWebRequest)WebRequest.Create(FormatUri("rooms", "message"));

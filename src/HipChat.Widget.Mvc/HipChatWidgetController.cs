@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Web.Mvc;
 
 namespace HipChat.Widget.Mvc
@@ -16,8 +17,9 @@ namespace HipChat.Widget.Mvc
                            JsonRequestBehavior = JsonRequestBehavior.AllowGet
                        };
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Trace.WriteLine(e.Message);
                 return new JsonResult
                        {
                            Data = new {},
